@@ -16,6 +16,7 @@ spring:
       type: com.zaxxer.hikari.HikariDataSource
       jdbcUrl: jdbc:mysql://localhost:3306/desayunos?autoReconnect=true&useSSL=false
       username: root
-      password: ENC(4LrrWgn6Ar0UikHCWbKCzw==) 
+      password: root
       hikari:
          poolName: pool
+
