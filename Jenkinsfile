@@ -53,6 +53,7 @@ pipeline {
 		stage('Unit Tests And Coverage') {
 			steps{
 				echo "------------>Unit Tests<------------"
+				sh 'gradle --b ./microservicio/build.gradle clean' //Asegurar no tener datos basura de compilaciones anteriores
 				sh 'gradle --b ./microservicio/build.gradle test'
 				junit '**/build/test-results/test/*.xml' //Agregar los resultados del test a Junit
 			    sh 'gradle --b ./microservicio/build.gradle jacocoTestReport'
