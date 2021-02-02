@@ -71,8 +71,6 @@ dependencies {
 	compile project.ext.springbootweb
 	runtimeOnly project.ext.springdevtools
 
-	runtimeOnly project.ext.db
-	runtimeOnly project.ext.h2
 	
 	implementation project.ext.springbootundertow
 	implementation project.ext.flyway
