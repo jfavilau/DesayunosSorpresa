@@ -29,7 +29,7 @@ public class ConsultaControladorProductoTest {
         // arrange
 
         // act - assert
-        mocMvc.perform(get("/productos")
+        mocMvc.perform(get("/productos/listar")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
