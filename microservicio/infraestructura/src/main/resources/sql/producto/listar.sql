@@ -1,2 +1,2 @@
-select id,nombre,descripcion,precio
+select id,nombre,descripcion,imagen,precio
 from producto

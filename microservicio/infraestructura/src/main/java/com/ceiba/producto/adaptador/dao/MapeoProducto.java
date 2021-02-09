@@ -15,9 +15,10 @@ public class MapeoProducto implements RowMapper<DtoProducto>, MapperResult {
         Long id = resultSet.getLong("id");
         String nombre = resultSet.getString("nombre");
         String descripcion = resultSet.getString("descripcion");
+        String imagen = resultSet.getString("imagen");
         Double precio = resultSet.getDouble( "precio");
 
-        return new DtoProducto(id,nombre,descripcion,precio);
+        return new DtoProducto(id,nombre,descripcion,imagen,precio);
     }
 
 }

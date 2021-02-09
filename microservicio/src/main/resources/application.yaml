@@ -6,7 +6,7 @@ jasypt:
 server:
    port: 9990
    servlet:
-      context-path: /DesayunosSorpresa
+      context-path: /desayunos-sorpresa
       session:
          timeout: 21600s
 

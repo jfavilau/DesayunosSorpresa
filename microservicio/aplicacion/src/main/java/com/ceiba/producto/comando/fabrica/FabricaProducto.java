@@ -12,6 +12,7 @@ public class FabricaProducto {
                 comandoProducto.getId(),
                 comandoProducto.getNombre(),
                 comandoProducto.getDescripcion(),
+                comandoProducto.getImagen(),
                 comandoProducto.getPrecio()
         );
     }

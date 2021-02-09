@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/productos")
+@RequestMapping("/productos/listar")
 @Api(tags={"Controlador consulta producto"})
 public class ConsultaControladorProducto {
 
