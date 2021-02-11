@@ -3,6 +3,7 @@ package com.ceiba.pedido.modelo.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -13,6 +14,6 @@ public class DtoPedido {
     private String email;
     private String nombresApellidos;
     private LocalDateTime fechaPedido;
-    private Date fechaEntrega;
+    private LocalDate fechaEntrega;
     private String estado;
 }

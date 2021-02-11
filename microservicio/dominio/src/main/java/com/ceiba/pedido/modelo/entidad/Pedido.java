@@ -2,6 +2,7 @@ package com.ceiba.pedido.modelo.entidad;
 
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -12,10 +13,10 @@ public class Pedido {
     private String email;
     private String nombresApellidos;
     private LocalDateTime fechaPedido;
-    private Date fechaEntrega;
+    private LocalDate fechaEntrega;
     private String estado;
 
-    public Pedido(Long id, String email, String nombresApellidos, Date fechaEntrega, String estado) {
+    public Pedido(Long id, String email, String nombresApellidos, LocalDate fechaEntrega, String estado) {
         this.id = id;
         this.email = email;
         this.nombresApellidos = nombresApellidos;

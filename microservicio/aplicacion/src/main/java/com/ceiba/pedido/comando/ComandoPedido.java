@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -17,7 +17,7 @@ public class ComandoPedido {
     private Long id;
     private String email;
     private String nombresApellidos;
-    private LocalDate fechaPedido;
-    private Date fechaEntrega;
+    private LocalDateTime fechaPedido;
+    private LocalDate fechaEntrega;
     private String estado;
 }
