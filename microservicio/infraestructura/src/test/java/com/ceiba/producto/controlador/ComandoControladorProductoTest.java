@@ -3,7 +3,6 @@ package com.ceiba.producto.controlador;
 import com.ceiba.ApplicationMock;
 import com.ceiba.producto.comando.ComandoProducto;
 import com.ceiba.producto.servicio.testdatabuilder.ComandoProductoTestDataBuilder;
-import com.ceiba.usuario.controlador.ComandoControladorUsuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -21,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ComandoControladorUsuario.class)
+@WebMvcTest(ComandoControladorProducto.class)
 public class ComandoControladorProductoTest {
 
     @Autowired
