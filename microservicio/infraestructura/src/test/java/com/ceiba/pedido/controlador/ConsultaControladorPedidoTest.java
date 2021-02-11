@@ -1,7 +1,6 @@
 package com.ceiba.pedido.controlador;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.producto.controlador.ConsultaControladorProducto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ConsultaControladorProducto.class)
+@WebMvcTest(ConsultaControladorPedido.class)
 public class ConsultaControladorPedidoTest {
 
     @Autowired

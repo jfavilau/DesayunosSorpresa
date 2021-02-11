@@ -46,7 +46,6 @@ public class ComandoControladorPedidoTest {
     }
 
     @Test
-    @Ignore
     public void cambiarEstadoPedidoTest() throws Exception{
         // arrange
         Long id = 2L;

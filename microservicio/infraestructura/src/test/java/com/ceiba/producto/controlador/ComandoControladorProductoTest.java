@@ -43,7 +43,6 @@ public class ComandoControladorProductoTest {
     }
 
     @Test
-    @Ignore
     public void actualizar() throws Exception{
         // arrange
         Long id = 2L;
