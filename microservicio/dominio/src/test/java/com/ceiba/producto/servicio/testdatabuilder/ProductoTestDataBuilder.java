@@ -13,7 +13,7 @@ public class ProductoTestDataBuilder {
         nombre = "Desayuno día de san valentin";
         descripcion = "Sandwich, jugo de naranja, fruta";
         imagen = "assets/desayuno-ancheta-de-mi-tierra.jpg";
-        precio = 145000.00;
+        precio = -145000.00;
     }
 
     public ProductoTestDataBuilder conNombre(String nombre) {
