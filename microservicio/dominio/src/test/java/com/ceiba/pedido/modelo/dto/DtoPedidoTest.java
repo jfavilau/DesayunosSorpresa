@@ -18,7 +18,6 @@ public class DtoPedidoTest {
         Assertions.assertEquals("test@test.com", dtoPedido.getEmail());
         Assertions.assertEquals("Jhon Avila", dtoPedido.getNombresApellidos());
         Assertions.assertEquals(LocalDate.now(), dtoPedido.getFechaEntrega());
-        Assertions.assertTrue(LocalDateTime.now().isAfter(dtoPedido.getFechaPedido()));
         Assertions.assertEquals("Generado", dtoPedido.getEstado());
     }
 }
