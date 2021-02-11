@@ -4,7 +4,6 @@ import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
-import com.ceiba.producto.modelo.entidad.Producto;
 import org.springframework.stereotype.Repository;
 
 @Repository

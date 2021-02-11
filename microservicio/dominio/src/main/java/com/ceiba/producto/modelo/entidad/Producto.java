@@ -1,6 +1,5 @@
 package com.ceiba.producto.modelo.entidad;
 
-
 import lombok.Getter;
 
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;

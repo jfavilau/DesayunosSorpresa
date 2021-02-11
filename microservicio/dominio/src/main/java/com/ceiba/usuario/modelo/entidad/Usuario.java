@@ -1,6 +1,5 @@
 package com.ceiba.usuario.modelo.entidad;
 
-
 import lombok.Getter;
 
 import java.time.LocalDateTime;
