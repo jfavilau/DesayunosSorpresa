@@ -5,6 +5,7 @@ import com.ceiba.producto.modelo.entidad.Producto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.logging.LoggingMXBean;
 
 public class PedidoTestDataBuilder {
     private Long id;
@@ -28,14 +29,14 @@ public class PedidoTestDataBuilder {
         return this;
     }
 
-    public PedidoTestDataBuilder conFechaEntrega() {
-        this.fechaEntrega = LocalDate.now();
+    public PedidoTestDataBuilder conFechaEntrega(LocalDate fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
         return this;
     }
 
-    public PedidoTestDataBuilder conFechaEntregaMayorDosDias() {
-        this.id = 2L;
-        this.fechaEntrega = LocalDate.now().plusDays(2);
+    public PedidoTestDataBuilder conFechaEntregaId(LocalDate fechaEntrega, Long id) {
+        this.id = id;
+        this.fechaEntrega = fechaEntrega;
         return this;
     }
 

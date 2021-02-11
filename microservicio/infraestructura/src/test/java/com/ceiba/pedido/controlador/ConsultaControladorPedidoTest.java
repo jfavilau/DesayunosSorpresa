@@ -29,11 +29,10 @@ public class ConsultaControladorPedidoTest {
         // arrange
 
         // act - assert
-        mocMvc.perform(get("/productos/listar")
+        mocMvc.perform(get("/pedidos/listar")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].nombre", is("Desayuno día de san valentin")));
+                .andExpect(jsonPath("$[0].email", is("test@test.com")));
     }
 
 

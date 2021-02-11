@@ -8,6 +8,8 @@ import com.ceiba.pedido.servicio.testdatabuilder.PedidoTestDataBuilder;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import static org.junit.Assert.assertEquals;
@@ -27,7 +29,7 @@ public class ServicioRealizarPedidoTest {
     @Test
     public void validarEntregaMismoDiaTest() {
         // arrange
-        Pedido pedido = new PedidoTestDataBuilder().conFechaEntrega().build();
+        Pedido pedido = new PedidoTestDataBuilder().conFechaEntrega(LocalDate.now()).build();
         RepositorioPedido repositorioPedido = Mockito.mock(RepositorioPedido.class);
         ServicioRealizarPedido servicioRealizarPedido = new ServicioRealizarPedido(repositorioPedido);
         // act - assert
@@ -38,7 +40,7 @@ public class ServicioRealizarPedidoTest {
     @Test
     public void ejecutarTest() {
         // arrange
-        Pedido pedido = new PedidoTestDataBuilder().conFechaEntregaMayorDosDias().build();
+        Pedido pedido = new PedidoTestDataBuilder().conFechaEntregaId(LocalDate.now().plusDays(2),2L ).build();
         RepositorioPedido repositorioPedido = Mockito.mock(RepositorioPedido.class);
         ServicioRealizarPedido servicioRealizarPedido = new ServicioRealizarPedido(repositorioPedido);
         // act - assert
