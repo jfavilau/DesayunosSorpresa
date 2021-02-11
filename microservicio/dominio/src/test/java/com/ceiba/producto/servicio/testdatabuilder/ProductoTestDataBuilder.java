@@ -13,7 +13,7 @@ public class ProductoTestDataBuilder {
         nombre = "Desayuno día de san valentin";
         descripcion = "Sandwich, jugo de naranja, fruta";
         imagen = "assets/desayuno-ancheta-de-mi-tierra.jpg";
-        precio = -145000.00;
+        precio = 145000.00;
     }
 
     public ProductoTestDataBuilder conNombre(String nombre) {
@@ -23,6 +23,16 @@ public class ProductoTestDataBuilder {
 
     public ProductoTestDataBuilder conId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public ProductoTestDataBuilder conDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+        return this;
+    }
+
+    public ProductoTestDataBuilder conImagen(String imagen) {
+        this.descripcion = imagen;
         return this;
     }
 

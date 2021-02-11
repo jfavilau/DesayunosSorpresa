@@ -35,5 +35,16 @@ public class ServicioCrearProductoTest {
         servicioCrearProducto.ejecutar(producto);
         // act - assert
     }
+
+    @Test
+    public void crearProductoConDescripcionTest() {
+        // arrange
+        Producto producto = new ProductoTestDataBuilder().conDescripcion("Esto es una prueba").build();
+        RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
+        Mockito.when(repositorioProducto.existe(Mockito.anyString())).thenReturn(false);
+        ServicioCrearProducto servicioCrearProducto = new ServicioCrearProducto(repositorioProducto);
+        servicioCrearProducto.ejecutar(producto);
+        // act - assert
+    }
 }
 
