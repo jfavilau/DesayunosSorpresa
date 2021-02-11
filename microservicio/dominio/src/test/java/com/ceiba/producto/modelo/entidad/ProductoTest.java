@@ -1,15 +1,20 @@
 package com.ceiba.producto.modelo.entidad;
 
-import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
 public class ProductoTest {
 
-    @Test(expected = ExcepcionValorObligatorio.class)
+    @Test
     public void productoTest() {
         // arrange
 
-        Producto producto = new Producto(1L, null, "test", "test",120000.00);
+        Producto producto = new Producto(1L, "test", "test", "test",120000.00);
+
+        Assertions.assertEquals(new Long(1L), producto.getId());
+        Assertions.assertEquals("test", producto.getNombre());
+        Assertions.assertEquals("test", producto.getDescripcion());
+        Assertions.assertEquals(new Double(120000.00), producto.getPrecio());
         // act - assert
     }
 
