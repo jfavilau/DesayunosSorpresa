@@ -19,6 +19,9 @@ public class Producto {
     private Double precio;
 
     public Producto(Long id,String nombre, String descripcion, String imagen, Double precio) {
+        validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE_DEL_PRODUCTO);
+        validarPositivo(precio, SE_DEBE_INGRESAR_PRECIO_POSITIVO);
+        validarObligatorio(precio, SE_DEBE_INGRESAR_PRECIO);
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;

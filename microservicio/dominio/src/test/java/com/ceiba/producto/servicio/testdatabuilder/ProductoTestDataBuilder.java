@@ -32,7 +32,12 @@ public class ProductoTestDataBuilder {
     }
 
     public ProductoTestDataBuilder conImagen(String imagen) {
-        this.descripcion = imagen;
+        this.imagen = imagen;
+        return this;
+    }
+
+    public ProductoTestDataBuilder conPrecio(Double precio) {
+        this.precio = precio;
         return this;
     }
 

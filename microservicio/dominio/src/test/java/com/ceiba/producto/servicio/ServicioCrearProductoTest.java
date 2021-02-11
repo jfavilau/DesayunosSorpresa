@@ -46,5 +46,38 @@ public class ServicioCrearProductoTest {
         servicioCrearProducto.ejecutar(producto);
         // act - assert
     }
+
+    @Test(expected = ExcepcionValorObligatorio.class)
+    public void crearProductoConNombreNullTest() {
+        // arrange
+        Producto producto = new ProductoTestDataBuilder().conNombre(null).build();
+        RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
+        Mockito.when(repositorioProducto.existe(Mockito.anyString())).thenReturn(false);
+        ServicioCrearProducto servicioCrearProducto = new ServicioCrearProducto(repositorioProducto);
+        servicioCrearProducto.ejecutar(producto);
+        // act - assert
+    }
+
+    @Test(expected = ExcepcionValorInvalido.class)
+    public void crearProductoConPrecioNegativoTest() {
+        // arrange
+        Producto producto = new ProductoTestDataBuilder().conPrecio(-142000.00).build();
+        RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
+        Mockito.when(repositorioProducto.existe(Mockito.anyString())).thenReturn(false);
+        ServicioCrearProducto servicioCrearProducto = new ServicioCrearProducto(repositorioProducto);
+        servicioCrearProducto.ejecutar(producto);
+        // act - assert
+    }
+
+    @Test(expected = ExcepcionValorObligatorio.class)
+    public void crearProductoConPrecioNullTest() {
+        // arrange
+        Producto producto = new ProductoTestDataBuilder().conPrecio(null).build();
+        RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
+        Mockito.when(repositorioProducto.existe(Mockito.anyString())).thenReturn(false);
+        ServicioCrearProducto servicioCrearProducto = new ServicioCrearProducto(repositorioProducto);
+        servicioCrearProducto.ejecutar(producto);
+        // act - assert
+    }
 }
 
