@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/pedidos")
-@Api(tags = { "Controlador comando producto"})
+@Api(tags = { "Controlador comando pedido"})
 public class ComandoControladorPedido {
 
     private final ManejadorRealizarPedido manejadorRealizarPedido;
@@ -32,7 +32,7 @@ public class ComandoControladorPedido {
 
     @PutMapping(value="/{id}")
     @ApiOperation("Actualizar estado del pedido")
-    public void actualizarEstadoPedido(@RequestBody ComandoPedido comandoPedido, @PathVariable Long id) {
+    public void cambiarEstadoPedido(@RequestBody ComandoPedido comandoPedido, @PathVariable Long id) {
         comandoPedido.setId(id);
         manejadorCambiarEstadoPedido.ejecutar(comandoPedido);
     }
