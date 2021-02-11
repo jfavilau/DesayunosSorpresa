@@ -19,4 +19,14 @@ public class ServicioActualizarProductoTest {
         // act - assert
         BasePrueba.assertThrows(() -> servicioActualizarProducto.ejecutar(producto), ExcepcionDuplicidad.class,"El producto con ese nombe ya existe en el sistema");
     }
+
+    @Test
+    public void ejecutarTest() {
+        // arrange
+        Producto producto = new ProductoTestDataBuilder().conId(1L).build();
+        RepositorioProducto repositorioUsuario = Mockito.mock(RepositorioProducto.class);
+        Mockito.when(repositorioUsuario.existeExcluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(false);
+        ServicioActualizarProducto servicioActualizarProducto = new ServicioActualizarProducto(repositorioUsuario);
+        servicioActualizarProducto.ejecutar(producto);
+    }
 }
