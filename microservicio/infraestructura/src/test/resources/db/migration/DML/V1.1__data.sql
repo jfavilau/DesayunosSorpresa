@@ -1,1 +1,1 @@
-insert into producto(nombre,descripcion,precio) values('desayuno','',15000.00);
+insert into producto(nombre,descripcion,imagen, precio) values('Desayuno día de san valentin','', 'assets/desayuno-ancheta-de-mi-tierra.jpg',15000.00);
