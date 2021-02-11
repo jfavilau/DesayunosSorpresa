@@ -33,6 +33,12 @@ public class PedidoTestDataBuilder {
         return this;
     }
 
+    public PedidoTestDataBuilder conFechaEntregaMayorDosDias() {
+        this.id = 2L;
+        this.fechaEntrega = LocalDate.now().plusDays(2);
+        return this;
+    }
+
     public Pedido build() {
         return new Pedido(id,email, nombresApellidos,fechaEntrega, estado);
     }}
