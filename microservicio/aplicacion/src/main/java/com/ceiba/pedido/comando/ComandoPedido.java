@@ -17,9 +17,9 @@ import java.util.List;
 public class ComandoPedido {
 
     private Long id;
-    private List<Producto> producto;
     private String email;
     private String nombresApellidos;
+    private List<Producto> producto;
     private String envia;
     private String recibe;
     private String direccion;

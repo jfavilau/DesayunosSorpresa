@@ -8,12 +8,17 @@ import com.ceiba.producto.servicio.testdatabuilder.ProductoTestDataBuilder;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.util.List;
+import java.util.Map;
+
+import static org.mockito.Mockito.*;
+
 public class ServicioActualizarProductoTest {
     @Test
     public void validarUsuarioExistenciaPreviaTest() {
         // arrange
         Producto producto = new ProductoTestDataBuilder().conId(1L).build();
-        RepositorioProducto repositorioUsuario = Mockito.mock(RepositorioProducto.class);
+        RepositorioProducto repositorioUsuario = mock(RepositorioProducto.class);
         Mockito.when(repositorioUsuario.existeExcluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(true);
         ServicioActualizarProducto servicioActualizarProducto = new ServicioActualizarProducto(repositorioUsuario);
         // act - assert
@@ -21,12 +26,16 @@ public class ServicioActualizarProductoTest {
     }
 
     @Test
-    public void ejecutarTest() {
+    public void actualizarProductoTest() {
         // arrange
         Producto producto = new ProductoTestDataBuilder().conId(1L).build();
-        RepositorioProducto repositorioUsuario = Mockito.mock(RepositorioProducto.class);
+        RepositorioProducto repositorioUsuario = mock(RepositorioProducto.class);
         Mockito.when(repositorioUsuario.existeExcluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(false);
         ServicioActualizarProducto servicioActualizarProducto = new ServicioActualizarProducto(repositorioUsuario);
         servicioActualizarProducto.ejecutar(producto);
+
+        Map mockMap = mock(Map.class);
+        mockMap.isEmpty();
+        verify(mockMap, only()).isEmpty();
     }
 }

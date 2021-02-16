@@ -4,10 +4,9 @@ import com.ceiba.ApplicationMock;
 import com.ceiba.pedido.comando.ComandoPedido;
 import com.ceiba.pedido.servicio.testdatabuilder.ComandoPedidoTestDataBuilder;
 import com.ceiba.producto.comando.ComandoProducto;
-import com.ceiba.producto.controlador.ComandoControladorProducto;
+import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.servicio.testdatabuilder.ComandoProductoTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,7 +39,11 @@ public class ComandoControladorPedidoTest {
     @Test
     public void realizarPedidoTest() throws Exception{
         // arrange
-        ComandoPedido pedido = new ComandoPedidoTestDataBuilder().build();
+        ComandoPedido pedido = new ComandoPedidoTestDataBuilder().conFechaEntrega(LocalDate.now().plusDays(1)).build();
+        List<Producto> lista = new ArrayList<>();
+        Producto producto =  new Producto(1L,"Desayuno del día de san valentin","", "",152000.0);
+        lista.add(producto);
+        pedido.setProducto(lista);
 
         // act - assert
         mocMvc.perform(post("/pedidos")
@@ -50,6 +58,10 @@ public class ComandoControladorPedidoTest {
         // arrange
         Long id = 2L;
         ComandoPedido pedido = new ComandoPedidoTestDataBuilder().build();
+        List<Producto> lista = new ArrayList<>();
+        Producto producto =  new Producto(1L,"Desayuno del día de san valentin","", "",152000.0);
+        lista.add(producto);
+        pedido.setProducto(lista);
 
         // act - assert
         mocMvc.perform(put("/pedidos/{id}",id)

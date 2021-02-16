@@ -1,1 +1,1 @@
-insert into producto (nombre,descripcion,imagen,precio) values (:nombre,:descripcion,:imagen,:precio)
+insert into producto (nombre,descripcion,imagen,precio,cantidad) values (:nombre,:descripcion,:imagen,:precio,:cantidad)

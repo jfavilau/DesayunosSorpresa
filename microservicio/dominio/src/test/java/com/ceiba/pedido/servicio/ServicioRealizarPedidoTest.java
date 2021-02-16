@@ -17,16 +17,6 @@ import static org.junit.Assert.assertEquals;
 public class ServicioRealizarPedidoTest {
 
     @Test
-    public void validarFEntregaMenorFPedidoTest() {
-        // arrange
-        Pedido pedido = new PedidoTestDataBuilder().build();
-        RepositorioPedido repositorioPedido = Mockito.mock(RepositorioPedido.class);
-        ServicioRealizarPedido servicioRealizarPedido = new ServicioRealizarPedido(repositorioPedido);
-        // act - assert
-        BasePrueba.assertThrows(() -> servicioRealizarPedido.ejecutar(pedido), ExcepcionValorInvalido.class,"La fecha de entrega debe ser posterior a la fecha actual");
-    }
-
-    @Test
     public void validarEntregaMismoDiaTest() {
         // arrange
         Pedido pedido = new PedidoTestDataBuilder().conFechaEntrega(LocalDate.now()).build();
@@ -38,7 +28,7 @@ public class ServicioRealizarPedidoTest {
     }
 
     @Test
-    public void ejecutarTest() {
+    public void realizarPedidoEjecutarTest() {
         // arrange
         Pedido pedido = new PedidoTestDataBuilder().conFechaEntregaId(LocalDate.now().plusDays(2),2L ).build();
         RepositorioPedido repositorioPedido = Mockito.mock(RepositorioPedido.class);
