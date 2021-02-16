@@ -24,6 +24,8 @@ public class ServicioRealizarPedido {
 
         validarEntregaMismoDia(fechaPedido, fechaEntrega);
         pedido.calcularSubTotal();
+        pedido.calcularDomicilioTotal();
+        pedido.calcularTotal();
         return this.repositorioPedido.realizarPedido(pedido);
     }
 
