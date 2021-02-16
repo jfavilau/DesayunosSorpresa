@@ -1,9 +1,11 @@
 package com.ceiba.pedido.modelo.entidad;
 
+import com.ceiba.dominio.excepcion.ExcepcionConsumoApi;
 import com.ceiba.producto.modelo.entidad.Producto;
 import lombok.Getter;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -15,9 +17,8 @@ import static com.ceiba.dominio.ValidadorArgumento.*;
 
 @Getter
 public class Pedido {
-
-    private static final String SE_DEBE_INGRESAR_EL_EMAIl = "Se debe ingresar el correo electrónico";
-    private static final String SE_DEBE_INGRESAR_UN_EMAIL_VALIDO     = "Se debe ingresar un correo electrónico válido";
+    private static final String SE_DEBE_INGRESAR_UN_EMAIL_VALIDO = "Se debe ingresar un correo electrónico válido";
+    private static final String SE_DEBE_INGRESAR_UN_EMAIL = "Se debe ingresar un correo electrónico";
     private static final String SE_DEBEN_INGRESAR_NOMBRES_Y_APELLIDOS = "Se debe ingresar nombres y apellidos";
     private static final String SE_DEBEN_ELEGIR_PRODUCTOS = "Se debe elegir al menos un producto";
     private static final String SE_DEBE_INGRESAR_PERSONA_QUE_RECIBE = "Se debe ingresar la persona que recibe";
@@ -26,6 +27,7 @@ public class Pedido {
     private static final String SE_DEBE_INGRESAR_VALORES_NUMERICOS = "Se debe ingresar valores numericos";
     private static final String SE_DEBE_INGRESAR_LA_FECHA_DE_ENTREGA = "Se debe ingresar la fecha de entrega";
     private static final String SE_DEBE_INGRESAR_FECHA_ENTREGA_MAYOR_A_FECHA_ACTUAL = "La fecha de entrega debe ser mayor a la fecha actual";
+    private static final String SERVICIO_NO_DISPONIBLE = "Servicio para consultar festivos no disponible";
     private static final String REGEX = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
 
     private Long id;
@@ -47,7 +49,7 @@ public class Pedido {
 
     public Pedido(Long id, String email, String nombresApellidos, List<Producto> producto, String envia, String recibe, String direccion,
                   String barrio, String celular, String mensaje, Double domicilioZona, LocalDate fechaEntrega) {
-        validarObligatorio(email,SE_DEBE_INGRESAR_EL_EMAIl);
+        validarObligatorio(email,SE_DEBE_INGRESAR_UN_EMAIL);
         validarRegex(email,REGEX, SE_DEBE_INGRESAR_UN_EMAIL_VALIDO);
         validarObligatorio(nombresApellidos,SE_DEBEN_INGRESAR_NOMBRES_Y_APELLIDOS);
         validarNoVacio(producto, SE_DEBEN_ELEGIR_PRODUCTOS);
@@ -87,7 +89,7 @@ public class Pedido {
         int day = this.fechaEntrega.getDayOfMonth();
 
         String url = "https://holidays.abstractapi.com/v1/?api_key=93693915bbb74c2991519130aa292982&country=CO"+"&year="+year+"&month="+month+"&day="+day;
-        String respuesta = "";
+        String respuesta;
 
         try {
             respuesta = peticionHttpGet(url);
@@ -95,8 +97,7 @@ public class Pedido {
                 this.domicilioZona = this.domicilioZona + 10000;
             }
         } catch (Exception e) {
-            // Manejar excepción
-            e.printStackTrace();
+            throw new ExcepcionConsumoApi(SERVICIO_NO_DISPONIBLE);
         }
     }
 
@@ -104,7 +105,7 @@ public class Pedido {
         this.total = this.subtotalProductos + this.domicilioZona;
     }
 
-    private String peticionHttpGet(String urlParaVisitar) throws Exception {
+    private String peticionHttpGet(String urlParaVisitar) throws IOException {
         // Esto es lo que vamos a devolver
         StringBuilder resultado = new StringBuilder();
         // Crear un objeto de tipo URL
