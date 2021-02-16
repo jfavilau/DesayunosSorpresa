@@ -1,8 +1,6 @@
 package com.ceiba.pedido.modelo.entidad;
 
 import com.ceiba.producto.modelo.entidad.Producto;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
 import lombok.Getter;
 
 import java.io.BufferedReader;
@@ -18,8 +16,6 @@ import static com.ceiba.dominio.ValidadorArgumento.*;
 
 @Getter
 public class Pedido {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Pedido.class);
-
     private static final String SE_DEBE_INGRESAR_UN_EMAIL_VALIDO = "Se debe ingresar un correo electrónico válido";
     private static final String SE_DEBE_INGRESAR_UN_EMAIL = "Se debe ingresar un correo electrónico";
     private static final String SE_DEBEN_INGRESAR_NOMBRES_Y_APELLIDOS = "Se debe ingresar nombres y apellidos";
@@ -30,7 +26,7 @@ public class Pedido {
     private static final String SE_DEBE_INGRESAR_VALORES_NUMERICOS = "Se debe ingresar valores numericos";
     private static final String SE_DEBE_INGRESAR_LA_FECHA_DE_ENTREGA = "Se debe ingresar la fecha de entrega";
     private static final String SE_DEBE_INGRESAR_FECHA_ENTREGA_MAYOR_A_FECHA_ACTUAL = "La fecha de entrega debe ser mayor a la fecha actual";
-    private static final String SERVICIO_NO_DISPONIBLE = "Servicio no disponible";
+    private static final String SERVICIO_NO_DISPONIBLE = "La fecha de entrega debe ser mayor a la fecha actual";
     private static final String REGEX = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
 
     private Long id;
@@ -101,7 +97,7 @@ public class Pedido {
                 this.domicilioZona = this.domicilioZona + 10000;
             }
         } catch (IOException e) {
-           LOGGER.error(SERVICIO_NO_DISPONIBLE,e);
+            e.printStackTrace();
         }
 
     }
