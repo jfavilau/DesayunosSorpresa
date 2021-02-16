@@ -17,6 +17,7 @@ public class PedidoTest {
         Assertions.assertEquals(null, pedido.getId());
         Assertions.assertEquals("test@test.com", pedido.getEmail());
         Assertions.assertEquals("Juan Perez", pedido.getNombresApellidos());
+        Assertions.assertEquals(new Long(1L), pedido.getProducto().get(0).getId());
         Assertions.assertEquals(LocalDate.now().plusDays(2), pedido.getFechaEntrega());
         Assertions.assertTrue(LocalDateTime.now().plusDays(1).isAfter(pedido.getFechaPedido()));
         Assertions.assertEquals("Juan Perez", pedido.getEnvia());

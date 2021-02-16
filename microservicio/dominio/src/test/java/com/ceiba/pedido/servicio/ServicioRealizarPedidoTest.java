@@ -2,6 +2,7 @@ package com.ceiba.pedido.servicio;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
+import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.pedido.servicio.testdatabuilder.PedidoTestDataBuilder;
@@ -11,8 +12,10 @@ import org.mockito.Mockito;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class ServicioRealizarPedidoTest {
 
@@ -35,7 +38,30 @@ public class ServicioRealizarPedidoTest {
         ServicioRealizarPedido servicioRealizarPedido = new ServicioRealizarPedido(repositorioPedido);
         // act - assert
         Long numeroPedido = servicioRealizarPedido.ejecutar(pedido);
-        assertEquals("0", numeroPedido.toString());
+
+        Map mockMap = mock(Map.class);
+        mockMap.isEmpty();
+        verify(mockMap, only()).isEmpty();
+    }
+
+    @Test (expected = ExcepcionValorInvalido.class)
+    public void realizarPedidoEmailInvalido(){
+        Pedido pedido = new PedidoTestDataBuilder().conEmail("jhonavil").build();
+        RepositorioPedido repositorioPedido = Mockito.mock(RepositorioPedido.class);
+        ServicioRealizarPedido servicioRealizarPedido = new ServicioRealizarPedido(repositorioPedido);
+        // act - assert
+        BasePrueba.assertThrows(() -> servicioRealizarPedido.ejecutar(pedido), ExcepcionValorInvalido.class,"Se debe ingresar un correo electrónico válido");
+
+    }
+
+    @Test (expected = ExcepcionValorInvalido.class)
+    public void realizarPedidoNombresNull(){
+        Pedido pedido = new PedidoTestDataBuilder().conNombres("").build();
+        RepositorioPedido repositorioPedido = Mockito.mock(RepositorioPedido.class);
+        ServicioRealizarPedido servicioRealizarPedido = new ServicioRealizarPedido(repositorioPedido);
+        // act - assert
+        BasePrueba.assertThrows(() -> servicioRealizarPedido.ejecutar(pedido), ExcepcionValorInvalido.class,"Se debe ingresar un correo electrónico válido");
+
     }
 
 

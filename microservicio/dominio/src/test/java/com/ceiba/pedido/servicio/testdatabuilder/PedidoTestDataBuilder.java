@@ -61,6 +61,16 @@ public class PedidoTestDataBuilder {
         return this;
     }
 
+    public PedidoTestDataBuilder conEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public PedidoTestDataBuilder conNombres(String email) {
+        this.email = email;
+        return this;
+    }
+
     public Pedido build() {
         return new Pedido(id,email,nombresApellidos,producto,envia,recibe,direccion,barrio,celular,mensaje,total,fechaEntrega);
     }}
