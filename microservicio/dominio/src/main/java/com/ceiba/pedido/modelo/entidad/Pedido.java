@@ -1,6 +1,5 @@
 package com.ceiba.pedido.modelo.entidad;
 
-import com.ceiba.dominio.excepcion.ExcepcionConsumoApi;
 import com.ceiba.producto.modelo.entidad.Producto;
 import lombok.Getter;
 
@@ -12,6 +11,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.logging.Logger;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
@@ -97,7 +97,7 @@ public class Pedido {
                 this.domicilioZona = this.domicilioZona + 10000;
             }
         } catch (IOException e) {
-            throw new ExcepcionConsumoApi(e.getMessage());
+            Logger.getLogger(e.getMessage());
         }
 
     }
