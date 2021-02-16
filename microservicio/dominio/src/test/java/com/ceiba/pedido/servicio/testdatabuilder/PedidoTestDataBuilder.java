@@ -19,6 +19,7 @@ public class PedidoTestDataBuilder {
     private String barrio;
     private String celular;
     private String mensaje;
+    private Double domicilioZona;
     private Double total;
     private LocalDateTime fechaPedido;
     private LocalDate fechaEntrega;
@@ -39,7 +40,8 @@ public class PedidoTestDataBuilder {
         barrio = "Robledo";
         celular = "3154679807";
         mensaje = "Esto es un evío de prueba";
-        total = 158900.00;
+        domicilioZona = 10000.00;
+        total = 0.00;
         estado = "GENERADO";
         producto = lista;
 
@@ -72,5 +74,5 @@ public class PedidoTestDataBuilder {
     }
 
     public Pedido build() {
-        return new Pedido(id,email,nombresApellidos,producto,envia,recibe,direccion,barrio,celular,mensaje,total,fechaEntrega);
+        return new Pedido(id,email,nombresApellidos,producto,envia,recibe,direccion,barrio,celular,mensaje,domicilioZona,fechaEntrega);
     }}

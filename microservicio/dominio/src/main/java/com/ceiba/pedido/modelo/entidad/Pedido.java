@@ -90,7 +90,6 @@ public class Pedido {
         String url = "https://holidays.abstractapi.com/v1/?api_key=93693915bbb74c2991519130aa292982&country=CO" + "&year=" + year + "&month=" + month + "&day=" + day;
         String respuesta;
 
-
         try {
             respuesta = peticionHttpGet(url);
             if (!("[]").equals(respuesta)) {
@@ -106,7 +105,7 @@ public class Pedido {
         this.total = this.subtotalProductos + this.domicilioZona;
     }
 
-    private String peticionHttpGet(String urlParaVisitar) throws IOException {
+    public String peticionHttpGet(String urlParaVisitar) throws IOException {
         // Esto es lo que vamos a devolver
         StringBuilder resultado = new StringBuilder();
         // Crear un objeto de tipo URL

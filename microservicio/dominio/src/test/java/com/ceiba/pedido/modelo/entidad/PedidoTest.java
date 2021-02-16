@@ -26,7 +26,17 @@ public class PedidoTest {
         Assertions.assertEquals("Robledo", pedido.getBarrio());
         Assertions.assertEquals("3154679807", pedido.getCelular());
         Assertions.assertEquals("Esto es un evío de prueba", pedido.getMensaje());
+        Assertions.assertEquals(new Double(10000.00), pedido.getDomicilioZona());
         Assertions.assertEquals(new Double(0.0), pedido.getTotal());
         Assertions.assertEquals("GENERADO", pedido.getEstado());
+    }
+
+    @Test
+    public void calcularSubTotalTest() {
+        Pedido pedido = new PedidoTestDataBuilder().conFechaEntrega(LocalDate.now().plusDays(2)).build();
+        pedido.calcularSubTotal();
+
+        // act - assert
+        Assertions.assertEquals(new Double(152000.0), pedido.getSubtotalProductos());
     }
 }
