@@ -12,8 +12,15 @@ public class FabricaPedido {
                 comandoPedido.getId(),
                 comandoPedido.getEmail(),
                 comandoPedido.getNombresApellidos(),
-                comandoPedido.getFechaEntrega(),
-                comandoPedido.getEstado()
+                comandoPedido.getProducto(),
+                comandoPedido.getEnvia(),
+                comandoPedido.getRecibe(),
+                comandoPedido.getDireccion(),
+                comandoPedido.getBarrio(),
+                comandoPedido.getCelular(),
+                comandoPedido.getMensaje(),
+                comandoPedido.getZona(),
+                comandoPedido.getFechaEntrega()
         );
     }
 }

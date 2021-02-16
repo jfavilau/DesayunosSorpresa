@@ -1,1 +1,1 @@
-insert into pedido (email, nombres_apellidos, fecha_pedido, fecha_entrega , estado) values (:email, :nombresApellidos, :fechaPedido, :fechaEntrega , :estado)
+insert into pedido (email,nombres_apellidos,envia,recibe,direccion,barrio,celular,mensaje,domicilio_zona,subtotal_productos,total,fecha_pedido, fecha_entrega , estado) values (:email, :nombresApellidos,:envia,:recibe,:direccion,:barrio,:celular,:mensaje,:domicilioZona,:subtotalProductos,:total,:fechaPedido, :fechaEntrega , :estado)

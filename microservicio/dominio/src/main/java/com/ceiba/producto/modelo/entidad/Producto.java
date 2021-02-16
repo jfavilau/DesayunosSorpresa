@@ -17,6 +17,9 @@ public class Producto {
     private String descripcion;
     private String imagen;
     private Double precio;
+    private int cantidad;
+
+    public Producto(){}
 
     public Producto(Long id,String nombre, String descripcion, String imagen, Double precio) {
         validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE_DEL_PRODUCTO);
@@ -27,6 +30,7 @@ public class Producto {
         this.descripcion = descripcion;
         this.imagen = imagen;
         this.precio = precio;
+        this.cantidad = 1;
     }
 
 }

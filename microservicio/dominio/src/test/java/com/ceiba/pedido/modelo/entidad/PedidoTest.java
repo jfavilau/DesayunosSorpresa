@@ -1,5 +1,6 @@
 package com.ceiba.pedido.modelo.entidad;
 
+import com.ceiba.pedido.servicio.testdatabuilder.PedidoTestDataBuilder;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -10,14 +11,21 @@ public class PedidoTest {
 
     @Test
     public void productoTest() {
-        Pedido pedido = new Pedido(2L, "test@test.com", "Jhon Avila", LocalDate.now(), "Generado");
+        Pedido pedido = new PedidoTestDataBuilder().build();
 
         // act - assert
-        Assertions.assertEquals(new Long(2L), pedido.getId());
+        Assertions.assertEquals(null, pedido.getId());
         Assertions.assertEquals("test@test.com", pedido.getEmail());
-        Assertions.assertEquals("Jhon Avila", pedido.getNombresApellidos());
-        Assertions.assertEquals(LocalDate.now(), pedido.getFechaEntrega());
-        Assertions.assertTrue(LocalDateTime.now().isAfter(pedido.getFechaPedido()));
-        Assertions.assertEquals("Generado", pedido.getEstado());
+        Assertions.assertEquals("Juan Perez", pedido.getNombresApellidos());
+        Assertions.assertEquals(LocalDate.now().minusDays(1), pedido.getFechaEntrega());
+        Assertions.assertTrue(LocalDateTime.now().plusDays(1).isAfter(pedido.getFechaPedido()));
+        Assertions.assertEquals("Juan Perez", pedido.getDe());
+        Assertions.assertEquals("Andrea Alsina", pedido.getPara());
+        Assertions.assertEquals("Carrera 43 # 24-56", pedido.getDireccion());
+        Assertions.assertEquals("Robledo", pedido.getBarrio());
+        Assertions.assertEquals("3154679807", pedido.getCelular());
+        Assertions.assertEquals("Esto es un evío de prueba", pedido.getMensaje());
+        Assertions.assertEquals(new Double(158900.00), pedido.getPrecio());
+        Assertions.assertEquals("GENERADO", pedido.getEstado());
     }
 }

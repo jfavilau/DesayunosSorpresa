@@ -7,7 +7,7 @@ import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RepositorioPedidoMysql implements RepositorioPedido {
+public class  RepositorioPedidoMysql implements RepositorioPedido {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 

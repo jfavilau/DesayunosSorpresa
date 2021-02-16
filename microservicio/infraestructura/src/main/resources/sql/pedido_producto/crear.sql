@@ -1,0 +1,1 @@
+insert into pedido_productos (pedido_id,producto_id,cantidad) values (:pedidoId,:productoId,:cantidad)

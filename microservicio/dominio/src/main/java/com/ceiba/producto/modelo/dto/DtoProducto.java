@@ -11,5 +11,6 @@ public class DtoProducto {
     private String descripcion;
     private String imagen;
     private Double precio;
+    private int cantidad;
 
 }

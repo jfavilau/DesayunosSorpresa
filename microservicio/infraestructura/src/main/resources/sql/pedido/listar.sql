@@ -1,2 +1,1 @@
-select id,email,nombres_apellidos,fecha_pedido, fecha_entrega, estado
-from pedido
+select id,email,nombres_apellidos,envia,recibe,direccion,barrio,celular,mensaje,fecha_pedido,fecha_entrega,total,estado from pedido

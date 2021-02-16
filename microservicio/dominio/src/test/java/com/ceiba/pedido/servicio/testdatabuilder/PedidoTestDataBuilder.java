@@ -1,16 +1,21 @@
 package com.ceiba.pedido.servicio.testdatabuilder;
 
 import com.ceiba.pedido.modelo.entidad.Pedido;
-import com.ceiba.producto.modelo.entidad.Producto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.logging.LoggingMXBean;
 
 public class PedidoTestDataBuilder {
     private Long id;
     private String email;
     private String nombresApellidos;
+    private String de;
+    private String para;
+    private String direccion;
+    private String barrio;
+    private String celular;
+    private String mensaje;
+    private Double precio;
     private LocalDateTime fechaPedido;
     private LocalDate fechaEntrega;
     private String estado;
@@ -20,6 +25,13 @@ public class PedidoTestDataBuilder {
         nombresApellidos = "Juan Perez";
         fechaPedido = LocalDateTime.now();
         fechaEntrega = LocalDate.now().minusDays(1);
+        de = "Juan Perez";
+        para = "Andrea Alsina";
+        direccion = "Carrera 43 # 24-56";
+        barrio = "Robledo";
+        celular = "3154679807";
+        mensaje = "Esto es un evío de prueba";
+        precio = 158900.00;
         estado = "GENERADO";
 
     }
@@ -41,5 +53,5 @@ public class PedidoTestDataBuilder {
     }
 
     public Pedido build() {
-        return new Pedido(id,email, nombresApellidos,fechaEntrega, estado);
+        return new Pedido(id,email, nombresApellidos,de,para,direccion,barrio,celular,mensaje,precio,fechaEntrega,estado);
     }}

@@ -1,2 +1,2 @@
-insert into pedido(email,nombres_apellidos,fecha_pedido, fecha_entrega, estado) values('test@test.com','Jhon Avila', now(),now(), 'GENERADO');
+insert into pedido(email,nombres_apellidos,de,para,direccion,barrio,celular,mensaje,precio,fecha_pedido, fecha_entrega, estado) values('test@test.com','Jhon Avila', "Juan Perez", "Andrea Alsina","carrera 34 # 45-67", "Girasoles", "3129873459", "Esto es una prueba", 152390.00,now(),now(), 'GENERADO');
 insert into producto(nombre,descripcion,imagen, precio) values('Desayuno día de san valentin','', 'assets/desayuno-ancheta-de-mi-tierra.jpg',15000.00);
