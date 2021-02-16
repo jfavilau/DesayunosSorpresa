@@ -2,10 +2,8 @@ package com.ceiba.pedidoProducto.adaptador.repositorio;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.pedido.modelo.entidad.Pedido;
-import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
-import com.ceiba.pedidoProductos.modelo.entidad.PedidoProducto;
-import com.ceiba.pedidoProductos.puerto.repositorio.RepositorioPedidoProducto;
+import com.ceiba.pedidoproducto.modelo.entidad.PedidoProducto;
+import com.ceiba.pedidoproducto.puerto.repositorio.RepositorioPedidoProducto;
 import org.springframework.stereotype.Repository;
 
 @Repository

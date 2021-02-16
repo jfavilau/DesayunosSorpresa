@@ -1,7 +1,7 @@
-package com.ceiba.pedidoProductos.servicio;
+package com.ceiba.pedidoproducto.servicio;
 
-import com.ceiba.pedidoProductos.modelo.entidad.PedidoProducto;
-import com.ceiba.pedidoProductos.puerto.repositorio.RepositorioPedidoProducto;
+import com.ceiba.pedidoproducto.modelo.entidad.PedidoProducto;
+import com.ceiba.pedidoproducto.puerto.repositorio.RepositorioPedidoProducto;
 
 
 public class ServicioCrearPedidoProducto {

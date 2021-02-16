@@ -1,4 +1,4 @@
-package com.ceiba.pedidoProducto.comando;
+package com.ceiba.pedidoproducto.comando;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.ceiba.pedidoProductos.modelo.dto;
+package com.ceiba.pedidoproducto.modelo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

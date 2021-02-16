@@ -1,15 +1,11 @@
-package com.ceiba.pedidoProducto.comando.manejador;
+package com.ceiba.pedidoproducto.comando.manejador;
 
 import com.ceiba.ComandoRespuesta;
 import com.ceiba.manejador.ManejadorComandoRespuesta;
-import com.ceiba.pedidoProducto.comando.ComandoPedidoProducto;
-import com.ceiba.pedidoProducto.comando.fabrica.FabricaPedidoProducto;
-import com.ceiba.pedidoProductos.modelo.entidad.PedidoProducto;
-import com.ceiba.pedidoProductos.servicio.ServicioCrearPedidoProducto;
-import com.ceiba.producto.comando.ComandoProducto;
-import com.ceiba.producto.comando.fabrica.FabricaProducto;
-import com.ceiba.producto.modelo.entidad.Producto;
-import com.ceiba.producto.servicio.ServicioCrearProducto;
+import com.ceiba.pedidoproducto.comando.ComandoPedidoProducto;
+import com.ceiba.pedidoproducto.comando.fabrica.FabricaPedidoProducto;
+import com.ceiba.pedidoproducto.modelo.entidad.PedidoProducto;
+import com.ceiba.pedidoproducto.servicio.ServicioCrearPedidoProducto;
 import org.springframework.stereotype.Component;
 
 @Component
