@@ -27,7 +27,6 @@ public class Pedido {
     private static final String SE_DEBE_INGRESAR_VALORES_NUMERICOS = "Se debe ingresar valores numericos";
     private static final String SE_DEBE_INGRESAR_LA_FECHA_DE_ENTREGA = "Se debe ingresar la fecha de entrega";
     private static final String SE_DEBE_INGRESAR_FECHA_ENTREGA_MAYOR_A_FECHA_ACTUAL = "La fecha de entrega debe ser mayor a la fecha actual";
-    private static final String SERVICIO_NO_DISPONIBLE = "Servicio para consultar festivos no disponible";
     private static final String REGEX = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
 
     private Long id;
@@ -49,16 +48,16 @@ public class Pedido {
 
     public Pedido(Long id, String email, String nombresApellidos, List<Producto> producto, String envia, String recibe, String direccion,
                   String barrio, String celular, String mensaje, Double domicilioZona, LocalDate fechaEntrega) {
-        validarObligatorio(email,SE_DEBE_INGRESAR_UN_EMAIL);
-        validarRegex(email,REGEX, SE_DEBE_INGRESAR_UN_EMAIL_VALIDO);
-        validarObligatorio(nombresApellidos,SE_DEBEN_INGRESAR_NOMBRES_Y_APELLIDOS);
+        validarObligatorio(email, SE_DEBE_INGRESAR_UN_EMAIL);
+        validarRegex(email, REGEX, SE_DEBE_INGRESAR_UN_EMAIL_VALIDO);
+        validarObligatorio(nombresApellidos, SE_DEBEN_INGRESAR_NOMBRES_Y_APELLIDOS);
         validarNoVacio(producto, SE_DEBEN_ELEGIR_PRODUCTOS);
-        validarObligatorio(recibe,SE_DEBE_INGRESAR_PERSONA_QUE_RECIBE);
-        validarObligatorio(direccion,SE_DEBE_INGRESAR_LA_DIRECCION_DE_ENTREGA);
-        validarObligatorio(celular,SE_DEBE_INGRESAR_EL_NUMERO_DE_CELULAR);
+        validarObligatorio(recibe, SE_DEBE_INGRESAR_PERSONA_QUE_RECIBE);
+        validarObligatorio(direccion, SE_DEBE_INGRESAR_LA_DIRECCION_DE_ENTREGA);
+        validarObligatorio(celular, SE_DEBE_INGRESAR_EL_NUMERO_DE_CELULAR);
         validarNumerico(celular, SE_DEBE_INGRESAR_VALORES_NUMERICOS);
-        validarObligatorio(fechaEntrega,SE_DEBE_INGRESAR_LA_FECHA_DE_ENTREGA);
-        validarMenor(LocalDateTime.now(),fechaEntrega.atStartOfDay(), SE_DEBE_INGRESAR_FECHA_ENTREGA_MAYOR_A_FECHA_ACTUAL);
+        validarObligatorio(fechaEntrega, SE_DEBE_INGRESAR_LA_FECHA_DE_ENTREGA);
+        validarMenor(LocalDateTime.now(), fechaEntrega.atStartOfDay(), SE_DEBE_INGRESAR_FECHA_ENTREGA_MAYOR_A_FECHA_ACTUAL);
         this.id = id;
         this.email = email;
         this.nombresApellidos = nombresApellidos;
@@ -77,8 +76,8 @@ public class Pedido {
         this.estado = "GENERADO";
     }
 
-    public void calcularSubTotal(){
-        for (Producto item: this.producto){
+    public void calcularSubTotal() {
+        for (Producto item : this.producto) {
             this.subtotalProductos += item.getPrecio() * item.getCantidad();
         }
     }
@@ -88,20 +87,22 @@ public class Pedido {
         int year = this.fechaEntrega.getYear();
         int day = this.fechaEntrega.getDayOfMonth();
 
-        String url = "https://holidays.abstractapi.com/v1/?api_key=93693915bbb74c2991519130aa292982&country=CO"+"&year="+year+"&month="+month+"&day="+day;
+        String url = "https://holidays.abstractapi.com/v1/?api_key=93693915bbb74c2991519130aa292982&country=CO" + "&year=" + year + "&month=" + month + "&day=" + day;
         String respuesta;
+
 
         try {
             respuesta = peticionHttpGet(url);
-            if (!respuesta.equals("[]")){
+            if (!("[]").equals(respuesta)) {
                 this.domicilioZona = this.domicilioZona + 10000;
             }
-        } catch (Exception e) {
-            throw new ExcepcionConsumoApi(SERVICIO_NO_DISPONIBLE);
+        } catch (IOException e) {
+            throw new ExcepcionConsumoApi(e.getMessage());
         }
+
     }
 
-    public void calcularTotal(){
+    public void calcularTotal() {
         this.total = this.subtotalProductos + this.domicilioZona;
     }
 
