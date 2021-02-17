@@ -1,5 +1,6 @@
 package com.ceiba.producto.puerto.repositorio;
 
+import com.ceiba.producto.modelo.dto.DtoProducto;
 import com.ceiba.producto.modelo.entidad.Producto;
 
 public interface RepositorioProducto {
@@ -23,9 +24,16 @@ public interface RepositorioProducto {
     void eliminar(Long id);
 
     /**
+     * Permite consultar un producto por id
+     * @param id
+     * @return si existe o no
+     */
+    Producto buscarProductoPorId(Long id);
+
+    /**
      * Permite validar si existe un usuario con un nombre
      * @param nombre
-     * @return si existe o no
+
      */
     boolean existe(String nombre);
 

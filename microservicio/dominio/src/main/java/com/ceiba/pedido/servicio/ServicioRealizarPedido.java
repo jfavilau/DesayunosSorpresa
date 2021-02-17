@@ -27,10 +27,10 @@ public class ServicioRealizarPedido {
         boolean esFestivo = this.repositorioFestivosColombia.validarDiaFestivo(fechaEntrega);
 
         validarEntregaMismoDia(fechaPedido, fechaEntrega);
-        pedido.calcularSubTotal();
+        pedido.calcularSubTotalProductos();
         pedido.calcularDomicilioTotal(esFestivo);
         pedido.calcularTotal();
-        return this.repositorioPedido.realizarPedido(pedido);
+        return this.repositorioPedido.crearPedido(pedido);
     }
 
     private void validarEntregaMismoDia(LocalDateTime fechaPedido, LocalDate fechaEntrega) {

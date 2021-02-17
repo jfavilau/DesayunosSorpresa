@@ -42,5 +42,6 @@ public class ProductoTestDataBuilder {
     }
 
     public Producto build() {
-        return new Producto(id,nombre, descripcion,imagen, precio);
-    }}
+        return new Producto(id, nombre, descripcion, imagen, precio);
+    }
+}

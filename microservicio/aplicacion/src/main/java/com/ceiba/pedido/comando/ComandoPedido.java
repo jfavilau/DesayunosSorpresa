@@ -1,6 +1,6 @@
 package com.ceiba.pedido.comando;
 
-import com.ceiba.producto.modelo.entidad.Producto;
+import com.ceiba.producto.modelo.dto.DtoProductoIdCantidad;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ public class ComandoPedido {
     private Long id;
     private String email;
     private String nombresApellidos;
-    private List<Producto> producto;
+    private List<DtoProductoIdCantidad> producto;
     private String envia;
     private String recibe;
     private String direccion;

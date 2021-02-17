@@ -1,7 +1,9 @@
 package com.ceiba.pedido.servicio.testdatabuilder;
 
 import com.ceiba.pedido.modelo.entidad.Pedido;
+import com.ceiba.producto.modelo.dto.DtoProductoCantidad;
 import com.ceiba.producto.modelo.entidad.Producto;
+import com.ceiba.producto.servicio.testdatabuilder.DtoProductoCantidadTestDataBuilder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,7 +14,7 @@ public class PedidoTestDataBuilder {
     private Long id;
     private String email;
     private String nombresApellidos;
-    private List<Producto> producto;
+    private List<DtoProductoCantidad> producto;
     private String envia;
     private String recibe;
     private String direccion;
@@ -26,9 +28,9 @@ public class PedidoTestDataBuilder {
     private String estado;
 
     public PedidoTestDataBuilder() {
-        List<Producto> lista = new ArrayList<>();
-        Producto product =  new Producto(1L,"Desayuno del día de san valentin","", "",152000.0);
-        lista.add(product);
+        List<DtoProductoCantidad> lista = new ArrayList<>();
+        DtoProductoCantidad productoCantidad =  new DtoProductoCantidadTestDataBuilder().build();
+        lista.add(productoCantidad);
 
         email = "test@test.com";
         nombresApellidos = "Juan Perez";

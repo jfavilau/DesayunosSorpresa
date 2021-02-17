@@ -46,10 +46,10 @@ public class ServicioRealizarPedidoTest {
 
         ArgumentCaptor<Pedido> captor = ArgumentCaptor.forClass(Pedido.class);
 
-        verify(repositorioPedido,times(1)).realizarPedido(captor.capture());
+        verify(repositorioPedido,times(1)).crearPedido(captor.capture());
 
         Pedido pedidoAlmacenado = captor.getValue();
-        Assertions.assertEquals(new Double(172000.0), pedidoAlmacenado.getTotal());
+        Assertions.assertEquals(new Double(310000.0), pedidoAlmacenado.getTotal());
     }
 
     @Test
@@ -65,10 +65,10 @@ public class ServicioRealizarPedidoTest {
 
         ArgumentCaptor<Pedido> captor = ArgumentCaptor.forClass(Pedido.class);
 
-        verify(repositorioPedido,times(1)).realizarPedido(captor.capture());
+        verify(repositorioPedido,times(1)).crearPedido(captor.capture());
 
         Pedido pedidoAlmacenado = captor.getValue();
-        Assertions.assertEquals(new Double(162000.0), pedidoAlmacenado.getTotal());
+        Assertions.assertEquals(new Double(300000.0), pedidoAlmacenado.getTotal());
     }
 
     @Test (expected = ExcepcionValorInvalido.class)
@@ -90,7 +90,7 @@ public class ServicioRealizarPedidoTest {
         ServicioRealizarPedido servicioRealizarPedido = new ServicioRealizarPedido(repositorioPedido, repositorioFestivosColombia);
         servicioRealizarPedido.ejecutar(pedido);
 
-        Assertions.assertEquals(new Double(162000.0), pedido.getTotal());
+        Assertions.assertEquals(new Double(300000.0), pedido.getTotal());
     }
 
     @Test (expected = ExcepcionValorInvalido.class)

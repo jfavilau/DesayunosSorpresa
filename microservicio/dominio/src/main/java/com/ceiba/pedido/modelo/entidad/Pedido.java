@@ -1,11 +1,13 @@
 package com.ceiba.pedido.modelo.entidad;
 
+import com.ceiba.producto.modelo.dto.DtoProductoCantidad;
 import com.ceiba.producto.modelo.entidad.Producto;
 import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
@@ -20,6 +22,7 @@ public class Pedido {
     private static final String SE_DEBE_INGRESAR_EL_NUMERO_DE_CELULAR = "Se debe ingresar el número de celular";
     private static final String SE_DEBE_INGRESAR_VALORES_NUMERICOS = "Se debe ingresar valores numericos";
     private static final String SE_DEBE_INGRESAR_LA_FECHA_DE_ENTREGA = "Se debe ingresar la fecha de entrega";
+    private static final String SE_DEBE_INGRESAR_LA_ZONA_DE_ENTREGA = "Se debe ingresar la zona de entrega";
     private static final String SE_DEBE_INGRESAR_FECHA_ENTREGA_MAYOR_A_FECHA_ACTUAL = "La fecha de entrega debe ser mayor a la fecha actual";
     private static final String SERVICIO_NO_DISPONIBLE = "La fecha de entrega debe ser mayor a la fecha actual";
     private static final String REGEX = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
@@ -28,7 +31,7 @@ public class Pedido {
     private Long id;
     private String email;
     private String nombresApellidos;
-    private List<Producto> producto;
+    private List<DtoProductoCantidad> producto;
     private String envia;
     private String recibe;
     private String direccion;
@@ -42,16 +45,17 @@ public class Pedido {
     private LocalDate fechaEntrega;
     private String estado;
 
-    public Pedido(Long id, String email, String nombresApellidos, List<Producto> producto, String envia, String recibe, String direccion,
+    public Pedido(Long id, String email, String nombresApellidos, List<DtoProductoCantidad> producto, String envia, String recibe, String direccion,
                   String barrio, String celular, String mensaje, Double domicilioZona, LocalDate fechaEntrega) {
         validarObligatorio(email, SE_DEBE_INGRESAR_UN_EMAIL);
         validarRegex(email, REGEX, SE_DEBE_INGRESAR_UN_EMAIL_VALIDO);
         validarObligatorio(nombresApellidos, SE_DEBEN_INGRESAR_NOMBRES_Y_APELLIDOS);
-        validarNoVacio(producto, SE_DEBEN_ELEGIR_PRODUCTOS);
+        validarObligatorio(producto, SE_DEBEN_ELEGIR_PRODUCTOS);
         validarObligatorio(recibe, SE_DEBE_INGRESAR_PERSONA_QUE_RECIBE);
         validarObligatorio(direccion, SE_DEBE_INGRESAR_LA_DIRECCION_DE_ENTREGA);
         validarObligatorio(celular, SE_DEBE_INGRESAR_EL_NUMERO_DE_CELULAR);
         validarNumerico(celular, SE_DEBE_INGRESAR_VALORES_NUMERICOS);
+        validarObligatorio(domicilioZona, SE_DEBE_INGRESAR_LA_ZONA_DE_ENTREGA);
         validarObligatorio(fechaEntrega, SE_DEBE_INGRESAR_LA_FECHA_DE_ENTREGA);
         validarMenor(LocalDateTime.now(), fechaEntrega.atStartOfDay(), SE_DEBE_INGRESAR_FECHA_ENTREGA_MAYOR_A_FECHA_ACTUAL);
         this.id = id;
@@ -72,10 +76,11 @@ public class Pedido {
         this.estado = "GENERADO";
     }
 
-    public void calcularSubTotal() {
-        for (Producto item : this.producto) {
-            this.subtotalProductos += item.getPrecio() * item.getCantidad();
+    public void calcularSubTotalProductos() {
+        for (DtoProductoCantidad item:producto){
+            this.subtotalProductos += item.getCantidad() * item.getProducto().getPrecio();
         }
+
     }
 
     public void calcularDomicilioTotal(boolean esFestivo){

@@ -1,22 +1,25 @@
 package com.ceiba.producto.adaptador.dao;
 
 import com.ceiba.infraestructura.jdbc.MapperResult;
-import com.ceiba.producto.modelo.entidad.Producto;
+import com.ceiba.producto.modelo.dto.DtoProducto;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MapeoProducto implements RowMapper<Producto>, MapperResult {
+public class MapeoDtoProducto implements RowMapper<DtoProducto>, MapperResult {
+
     @Override
-    public Producto mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+    public DtoProducto mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 
         Long id = resultSet.getLong("id");
         String nombre = resultSet.getString("nombre");
         String descripcion = resultSet.getString("descripcion");
         String imagen = resultSet.getString("imagen");
         Double precio = resultSet.getDouble( "precio");
+        int cantidad = resultSet.getInt("cantidad");
 
-        return new Producto(id,nombre,descripcion,imagen,precio);
+        return new DtoProducto(id,nombre,descripcion,imagen,precio,cantidad);
     }
+
 }

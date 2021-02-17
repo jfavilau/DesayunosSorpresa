@@ -1,6 +1,7 @@
 package com.ceiba.pedido.modelo.entidad;
 
 import com.ceiba.pedido.servicio.testdatabuilder.PedidoTestDataBuilder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -11,13 +12,13 @@ public class PedidoTest {
 
     @Test
     public void productoTest() {
-        Pedido pedido = new PedidoTestDataBuilder().conFechaEntrega(LocalDate.now().plusDays(2)).build();
+        Pedido pedido = new PedidoTestDataBuilder().conFechaEntregaId(LocalDate.now().plusDays(2),1L).build();
 
         // act - assert
-        Assertions.assertEquals(null, pedido.getId());
+        Assertions.assertEquals(new Long(1L), pedido.getId());
         Assertions.assertEquals("test@test.com", pedido.getEmail());
         Assertions.assertEquals("Juan Perez", pedido.getNombresApellidos());
-        Assertions.assertEquals(new Long(1L), pedido.getProducto().get(0).getId());
+        Assertions.assertEquals(null, pedido.getProducto().get(0).getProducto().getId());
         Assertions.assertEquals(LocalDate.now().plusDays(2), pedido.getFechaEntrega());
         Assertions.assertTrue(LocalDateTime.now().plusDays(1).isAfter(pedido.getFechaPedido()));
         Assertions.assertEquals("Juan Perez", pedido.getEnvia());
@@ -34,9 +35,9 @@ public class PedidoTest {
     @Test
     public void calcularSubTotalTest() {
         Pedido pedido = new PedidoTestDataBuilder().conFechaEntrega(LocalDate.now().plusDays(2)).build();
-        pedido.calcularSubTotal();
+        pedido.calcularSubTotalProductos();
 
         // act - assert
-        Assertions.assertEquals(new Double(152000.0), pedido.getSubtotalProductos());
+        Assertions.assertEquals(new Double(290000.0), pedido.getSubtotalProductos());
     }
 }

@@ -22,6 +22,6 @@ public class DaoProductoMysql implements DaoProducto {
 
     @Override
     public List<DtoProducto> listar() {
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoProducto());
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoDtoProducto());
     }
 }
