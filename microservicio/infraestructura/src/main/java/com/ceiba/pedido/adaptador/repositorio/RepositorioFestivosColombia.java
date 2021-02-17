@@ -33,7 +33,7 @@ public class RepositorioFestivosColombia implements IRepositorioFestivosColombia
                 return true;
             }
         }catch (Exception e){
-            throw new ExcepcionTecnica(SERVICIO_CONSULTA_FESTIVOS_NO_DISPONIBLE);
+            throw new RuntimeException(e);
         }
         return false;
     }
