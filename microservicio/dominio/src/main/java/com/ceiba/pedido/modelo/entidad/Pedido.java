@@ -42,7 +42,7 @@ public class Pedido {
     private LocalDate fechaEntrega;
     private String estado;
 
-    public Pedido(Long id, String email, String nombresApellidos, List<Producto> productos, String envia, String recibe, String direccion,
+    public Pedido(Long id, String email, String nombresApellidos, List<Producto> producto, String envia, String recibe, String direccion,
                   String barrio, String celular, String mensaje, Double domicilioZona, LocalDate fechaEntrega) {
         validarObligatorio(email, SE_DEBE_INGRESAR_UN_EMAIL);
         validarRegex(email, REGEX, SE_DEBE_INGRESAR_UN_EMAIL_VALIDO);
@@ -57,7 +57,7 @@ public class Pedido {
         this.id = id;
         this.email = email;
         this.nombresApellidos = nombresApellidos;
-        this.producto = productos;
+        this.producto = producto;
         this.envia = envia;
         this.recibe = recibe;
         this.direccion = direccion;
