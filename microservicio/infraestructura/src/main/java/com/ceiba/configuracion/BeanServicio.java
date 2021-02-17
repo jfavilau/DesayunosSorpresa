@@ -4,8 +4,6 @@ import com.ceiba.pedido.puerto.repositorio.IRepositorioFestivosColombia;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.pedido.servicio.ServicioCambiarEstadoPedido;
 import com.ceiba.pedido.servicio.ServicioRealizarPedido;
-import com.ceiba.pedidoproducto.puerto.repositorio.RepositorioPedidoProducto;
-import com.ceiba.pedidoproducto.servicio.ServicioCrearPedidoProducto;
 import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 import com.ceiba.producto.servicio.ServicioActualizarProducto;
 import com.ceiba.producto.servicio.ServicioCrearProducto;
@@ -39,10 +37,6 @@ public class BeanServicio {
     @Bean
     public ServicioCambiarEstadoPedido servicioCambiarEstadoPedido(RepositorioPedido repositorioPedido) {
         return new ServicioCambiarEstadoPedido(repositorioPedido);
-    }
-    @Bean
-    public ServicioCrearPedidoProducto servicioCrearPedidoProducto(RepositorioPedidoProducto repositorioPedidoProducto) {
-        return new ServicioCrearPedidoProducto(repositorioPedidoProducto);
     }
 
 }
