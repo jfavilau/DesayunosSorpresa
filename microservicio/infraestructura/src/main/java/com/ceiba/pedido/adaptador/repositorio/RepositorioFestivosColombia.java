@@ -33,7 +33,7 @@ public class RepositorioFestivosColombia implements IRepositorioFestivosColombia
                 esFestivo =  true;
             }
         }catch (IOException e){
-            throw new ExcepcionTecnica(e.getMessage());
+            throw new ExcepcionTecnica(e.getMessage(),e);
         }
         return esFestivo;
     }
