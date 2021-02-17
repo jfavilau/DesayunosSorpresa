@@ -1,5 +1,6 @@
 package com.ceiba.configuracion;
 
+import com.ceiba.pedido.puerto.repositorio.IRepositorioFestivosColombia;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.pedido.servicio.ServicioCambiarEstadoPedido;
 import com.ceiba.pedido.servicio.ServicioRealizarPedido;
@@ -31,8 +32,8 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioRealizarPedido servicioRealizarPedido(RepositorioPedido repositorioPedido) {
-        return new ServicioRealizarPedido(repositorioPedido);
+    public ServicioRealizarPedido servicioRealizarPedido(RepositorioPedido repositorioPedido, IRepositorioFestivosColombia repositorioFestivosColombia) {
+        return new ServicioRealizarPedido(repositorioPedido, repositorioFestivosColombia);
     }
 
     @Bean

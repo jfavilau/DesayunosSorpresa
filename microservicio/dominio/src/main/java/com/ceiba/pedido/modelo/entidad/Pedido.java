@@ -3,11 +3,6 @@ package com.ceiba.pedido.modelo.entidad;
 import com.ceiba.producto.modelo.entidad.Producto;
 import lombok.Getter;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,6 +23,7 @@ public class Pedido {
     private static final String SE_DEBE_INGRESAR_FECHA_ENTREGA_MAYOR_A_FECHA_ACTUAL = "La fecha de entrega debe ser mayor a la fecha actual";
     private static final String SERVICIO_NO_DISPONIBLE = "La fecha de entrega debe ser mayor a la fecha actual";
     private static final String REGEX = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
+    private static final Double VALOR_ADICIONAL_DOMICILIO = 10000.00;
 
     private Long id;
     private String email;
@@ -82,49 +78,14 @@ public class Pedido {
         }
     }
 
-    public void calcularDomicilioTotal() {
-        int month = this.fechaEntrega.getMonthValue();
-        int year = this.fechaEntrega.getYear();
-        int day = this.fechaEntrega.getDayOfMonth();
-
-        String url = "https://holidays.abstractapi.com/v1/?api_key=93693915bbb74c2991519130aa292982&country=CO" + "&year=" + year + "&month=" + month + "&day=" + day;
-        String respuesta;
-
-        try {
-            respuesta = peticionHttpGet(url);
-            if (!("[]").equals(respuesta)) {
-                this.domicilioZona = this.domicilioZona + 10000;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void calcularDomicilioTotal(boolean esFestivo){
+        if (esFestivo){
+            this.domicilioZona = this.domicilioZona + VALOR_ADICIONAL_DOMICILIO;
         }
-
     }
 
     public void calcularTotal() {
         this.total = this.subtotalProductos + this.domicilioZona;
-    }
-
-    public String peticionHttpGet(String urlParaVisitar) throws IOException {
-        // Esto es lo que vamos a devolver
-        StringBuilder resultado = new StringBuilder();
-        // Crear un objeto de tipo URL
-        URL url = new URL(urlParaVisitar);
-
-        // Abrir la conexión e indicar que será de tipo GET
-        HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
-        conexion.setRequestMethod("GET");
-        // Búferes para leer
-        BufferedReader rd = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
-        String linea;
-        // Mientras el BufferedReader se pueda leer, agregar contenido a resultado
-        while ((linea = rd.readLine()) != null) {
-            resultado.append(linea);
-        }
-        // Cerrar el BufferedReader
-        rd.close();
-        // Regresar resultado, pero como cadena, no como StringBuilder
-        return resultado.toString();
     }
 
 }

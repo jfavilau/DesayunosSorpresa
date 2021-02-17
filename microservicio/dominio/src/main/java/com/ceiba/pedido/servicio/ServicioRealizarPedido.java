@@ -2,6 +2,7 @@ package com.ceiba.pedido.servicio;
 
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.pedido.modelo.entidad.Pedido;
+import com.ceiba.pedido.puerto.repositorio.IRepositorioFestivosColombia;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 
 import java.time.LocalDate;
@@ -13,18 +14,21 @@ public class ServicioRealizarPedido {
     private static final String FECHA_DE_ENTREGA_MISMO_DIA_DEL_PEDIDO = "No aceptamos pedidos para entrega el mismo día que se hace el pedido, debe realizarlo con al menos un día de anterioridad. ";
 
     private final RepositorioPedido repositorioPedido;
+    private final IRepositorioFestivosColombia repositorioFestivosColombia;
 
-    public ServicioRealizarPedido(RepositorioPedido repositorioPedido) {
+    public ServicioRealizarPedido(RepositorioPedido repositorioPedido, IRepositorioFestivosColombia repositorioFestivosColombia) {
         this.repositorioPedido = repositorioPedido;
+        this.repositorioFestivosColombia = repositorioFestivosColombia;
     }
 
     public Long ejecutar(Pedido pedido) {
         LocalDateTime fechaPedido = pedido.getFechaPedido();
         LocalDate fechaEntrega = pedido.getFechaEntrega();
+        boolean esFestivo = this.repositorioFestivosColombia.validarDiaFestivo(fechaEntrega);
 
         validarEntregaMismoDia(fechaPedido, fechaEntrega);
         pedido.calcularSubTotal();
-        pedido.calcularDomicilioTotal();
+        pedido.calcularDomicilioTotal(esFestivo);
         pedido.calcularTotal();
         return this.repositorioPedido.realizarPedido(pedido);
     }
