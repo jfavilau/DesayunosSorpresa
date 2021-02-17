@@ -13,8 +13,7 @@ import java.time.LocalDate;
 
 @Repository
 public class RepositorioFestivosColombia implements IRepositorioFestivosColombia {
-
-    private static final String SERVICIO_CONSULTA_FESTIVOS_NO_DISPONIBLE = "Ha ocurrido un error, servicio para consulta de festivos no disponible";
+    
     private static final String HOST =  "https://holidays.abstractapi.com/v1/";
     private static final String LLAVE_API= "93693915bbb74c2991519130aa292982";
     private static final String PAIS = "CO";
@@ -32,8 +31,8 @@ public class RepositorioFestivosColombia implements IRepositorioFestivosColombia
             if (!("[]").equals(respuesta)){
                 return true;
             }
-        }catch (Exception e){
-            throw new RuntimeException(e);
+        }catch (IOException e){
+            throw new ExcepcionTecnica(e.getMessage());
         }
         return false;
     }
