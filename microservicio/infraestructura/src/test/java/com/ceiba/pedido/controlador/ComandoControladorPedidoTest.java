@@ -4,6 +4,7 @@ import com.ceiba.ApplicationMock;
 import com.ceiba.pedido.comando.ComandoPedido;
 import com.ceiba.pedido.servicio.testdatabuilder.ComandoPedidoTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,9 @@ public class ComandoControladorPedidoTest {
     private MockMvc mocMvc;
 
     @Test
-    public void realizarPedidoTest() throws Exception{
+    public void realizarPedidoDiaFestivoTest() throws Exception{
         // arrange
-        ComandoPedido pedido = new ComandoPedidoTestDataBuilder().conFechaEntrega(LocalDate.now().plusDays(1)).build();
+        ComandoPedido pedido = new ComandoPedidoTestDataBuilder().conFechaEntrega(LocalDate.of(2023,12,25)).build();
 
         // act - assert
         mocMvc.perform(post("/pedidos")
@@ -42,6 +43,19 @@ public class ComandoControladorPedidoTest {
                 .content(objectMapper.writeValueAsString(pedido)))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'valor': 2}"));
+    }
+
+    @Test
+    public void realizarPedidoFechaErronea() throws Exception{
+        // arrange
+        ComandoPedido pedido = new ComandoPedidoTestDataBuilder().conFechaEntrega(LocalDate.of(2024,2,9)).build();
+
+        // act - assert
+        mocMvc.perform(post("/pedidos")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(pedido)))
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().json("{'nombreExcepcion': \"ExcepcionTecnica\"}"));
     }
 
     @Test

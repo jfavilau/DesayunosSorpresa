@@ -6,7 +6,6 @@ import com.ceiba.pedido.comando.ComandoPedido;
 import com.ceiba.pedido.comando.fabrica.FabricaPedido;
 import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido.servicio.ServicioRealizarPedido;
-import com.ceiba.pedidoproducto.comando.fabrica.FabricaPedidoProducto;
 import com.ceiba.producto.modelo.dto.DtoProductoCantidad;
 import com.ceiba.producto.modelo.dto.DtoProductoIdCantidad;
 import com.ceiba.producto.modelo.entidad.Producto;
@@ -24,7 +23,6 @@ public class ManejadorRealizarPedido implements ManejadorComandoRespuesta<Comand
     private final RepositorioProducto repositorioProducto;
 
     public ManejadorRealizarPedido(FabricaPedido fabricaPedido, ServicioRealizarPedido servicioRealizarPedido,
-                                   FabricaPedidoProducto fabricaPedidoProducto,
                                    RepositorioProducto repositorioProducto) {
         this.fabricaPedido = fabricaPedido;
         this.servicioRealizarPedido = servicioRealizarPedido;
