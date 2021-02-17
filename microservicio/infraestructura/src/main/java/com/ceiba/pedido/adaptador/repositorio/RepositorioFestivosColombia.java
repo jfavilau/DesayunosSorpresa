@@ -24,17 +24,18 @@ public class RepositorioFestivosColombia implements IRepositorioFestivosColombia
         int anio = fechaEntrega.getYear();
         int dia =fechaEntrega.getDayOfMonth();
 
+        boolean esFestivo = false;
         String respuesta;
 
         try{
             respuesta = obtenerDiaFestivoApi(anio , mes, dia);
             if (!("[]").equals(respuesta)){
-                return true;
+                esFestivo =  true;
             }
         }catch (IOException e){
             throw new ExcepcionTecnica(e.getMessage());
         }
-        return false;
+        return esFestivo;
     }
 
     private String obtenerDiaFestivoApi(int anio, int mes, int dia) throws IOException {
