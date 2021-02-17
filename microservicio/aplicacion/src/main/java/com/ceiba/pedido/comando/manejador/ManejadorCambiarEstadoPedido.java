@@ -5,7 +5,6 @@ import com.ceiba.pedido.comando.ComandoPedido;
 import com.ceiba.pedido.comando.fabrica.FabricaPedido;
 import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido.servicio.ServicioCambiarEstadoPedido;
-import com.ceiba.producto.modelo.dto.DtoProducto;
 import com.ceiba.producto.modelo.dto.DtoProductoCantidad;
 import com.ceiba.producto.modelo.dto.DtoProductoIdCantidad;
 import com.ceiba.producto.modelo.entidad.Producto;
@@ -13,9 +12,7 @@ import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class ManejadorCambiarEstadoPedido implements ManejadorComando<ComandoPedido> {

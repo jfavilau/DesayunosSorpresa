@@ -1,13 +1,11 @@
 package com.ceiba.pedido.modelo.entidad;
 
 import com.ceiba.producto.modelo.dto.DtoProductoCantidad;
-import com.ceiba.producto.modelo.entidad.Producto;
 import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
